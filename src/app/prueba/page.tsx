@@ -84,10 +84,10 @@ const GameQuiz: React.FC = () => {
     if (!started) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-black">
-                <h1 className="text-4xl font-bold mb-6">Game Quiz</h1>
+                <h1 className="text-4xl font-bold mb-6 text-white">Game Quiz</h1>
                 <button
                     onClick={() => { setStarted(true) }}
-                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                    className="px-6 py-3 bg-blue-500 cursor-pointer text-white rounded-lg hover:bg-blue-600 transition"
                 >
                     Start
                 </button>
@@ -97,11 +97,11 @@ const GameQuiz: React.FC = () => {
 
     if (currentQuestion == 5) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-black">
+            <div className="flex flex-col text-white items-center justify-center min-h-screen bg-black">
                 <h1 className="text-4xl font-bold mb-4">Game Over</h1>
                 <p className="text-2xl">Your score: {score}</p>
-                <button onClick={() => { setScore(0); setStarted(false); setCurrentQuestion(0) }} className='px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition'>Retry</button>
-                <Link href={"/"}><button className='px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition'>Home</button></Link>
+                <button onClick={() => { setScore(0); setStarted(false); setCurrentQuestion(0) }} className='px-6 cursor-pointer py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition'>Retry</button>
+                <Link href={"/"}><button className='px-6 py-3 cursor-pointer bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition'>Home</button></Link>
             </div>
         );
     }
@@ -110,7 +110,7 @@ const GameQuiz: React.FC = () => {
 
     return (
         <div className={`flex h-dvh w-dvw bg-black flex-col md:flex-row items-center justify-center min-h-screen p-4`}>
-            <strong className={`${isQuestionAnimated ? 'bg-white/20 animate-pulse' : 'bg-transparent'}  w-[90dvw] absolute text-2xl top-[5dvh] left-[5dvw] `}> Points: <strong className={`transition duration-500  ${isScoreAnimated ? 'text-green-500 animate-bounce' : 'text-orange-400'
+            <strong className={`${isQuestionAnimated ? 'bg-white/20 animate-pulse' : 'bg-transparent'} text-white w-[90dvw] absolute text-2xl top-[5dvh] left-[5dvw] `}> Points: <strong className={`transition duration-500  ${isScoreAnimated ? 'text-green-500 animate-bounce' : 'text-orange-400'
                 }`}>{score}</strong></strong>
             <section className={`w-full h-[60%] flex:col md:flex items-center z-50  justify-center min-h-screen p-4 `}>
                 <article className="w-[30%] flex justify-center mb-4 md:mb-0">
@@ -121,7 +121,7 @@ const GameQuiz: React.FC = () => {
                     />
                 </article>
                 <article className="w-[50%] mb-6 flex flex-col gap-6 justify-center items-center">
-                    <h2 className="text-2xl font-semibold flex text-center h-full ml-36 justify-center w-full">{question.question}</h2>
+                    <h2 className="text-2xl font-semibold text-white flex text-center h-full ml-36 justify-center w-full">{question.question}</h2>
                     <section className="flex flex-col gap-4 w-full max-w-xs">
                         {question.answers.map((answer, index) => (
                             <button
