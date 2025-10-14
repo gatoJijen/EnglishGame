@@ -1,20 +1,160 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d542b;
-  --foreground: #000;
+  --background: #101022;
+  --bgInput: #0f1528;
+  --background-2: #fff;
+  --foreground: #ededed;
+  --nav-bg: #27272F;
+  --logoLogin-bg: #414040;
+  --home-background: #111827;
+  --text-primary-color: #fff;
+  --text-secondary-color: #000;
+  --text-secondary-color-60: rgba(0, 0, 0, 0.2);
+  --text-primary-color-40: #ffffff99;
+  --toolbar: #27272F;
+  --app1-nav-bg: #E7E8E9;
+  --lighter-bg: #fafafa;
+  --search-bg: #f4f5f8;
+  --stroke-color: rgb(45,172,224);
+  --stroke-color-hover: rgba(45, 173, 224, 0.5);
+  --stroke-color-hover2: rgba(45, 173, 224, 0.2);
+  --span-bg: rgba(79,85,113,0.35);
+  --gradient-home: linear-gradient(0deg, #0e0e1b 40%, #27272f9d);
+  --gradient-heart: linear-gradient(180deg, #23374b5c, #23374b);
+  --heart-color: #1414143d;
+  
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0d542b;
-    --foreground: #000;
+.dark {
+  --background: #ffffff;
+  --background-2: #000;
+  --foreground: #171717;
+  --nav-bg: #27272F;
+  --logoLogin-bg: #414040;
+  --home-background: #111827;
+  --text-primary-color: #000;
+  --text-primary-color-40: #000000  ;
+  --text-secondary-color: #fff;
+  --text-secondary-color-60: rgba(255, 255, 255, 0.2);
+  --toolbar: #27272F;
+  --span-bg: #fff9;
+  --gradient-home: linear-gradient(0deg,#faf8fc 40%,#27272f9d);
+  --gradient-heart: linear-gradient(180deg, #23374b5c, #23374b);
+  --heart-color: #1414143d;
   }
-}
+
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-foreground {
+  background-color: var(--foreground);
+}
+.hover-bg-foreground:hover {
+  background-color: var(--foreground);
+}
+.bg-background {
+  background-color: var(--background);
+}
+.bg-background-2 {
+  background-color: var(--background-2);
+}
+
+.App1Li:hover>p {
+  color: var(--text-secondary-color)
+}
+.bg-app1-nav {
+  background-color: var(--app1-nav-bg);
+}
+.bg-lighter {
+  background-color: var(--lighter-bg);
+}
+.bg-search {
+  background-color: var(--search-bg);
+}
+.bg-nav {
+  background-color: var(--nav-bg);
+}
+.bg-home {
+  background-color: var(--home-background )
+}
+.border-secondary-color {
+  border-color: var(--text-secondary-color);
+}
+.border-secondary-color-60 {
+  border-color: var(--text-secondary-color-60);
+}
+.bg-gradientP {
+  background: var(--gradient-home);
+}
+.bg-gradientHeart {
+  background: var(--gradient-heart);
+  object-fit: cover;
+}
+.stroke-color {
+  stroke: var(--stroke-color);
+}
+.color-stroke {
+  fill: var(--stroke-color)
+}
+.text-stroke {
+  color: var(--stroke-color)
+}
+.bg-stroke {
+  background-color: var(--stroke-color);
+}
+.h-bg-stroke:hover {
+  background-color: var(--stroke-color-hover);
+}
+.h-bg-stroke2:hover {
+  background-color: var(--stroke-color-hover2);
+}
+.primary-text {
+  color: var(--text-primary-color);
+}
+.secondary-text {
+  color: var(--text-secondary-color);
+}
+.primary-text-40 {
+  color: var(--text-primary-color-40);
+}
+.text-P {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 44px;
+  font-style: normal;
+}
+
+.bg-span {
+  background-color: var(--span-bg);
+}
+
+.bg-toolbar {
+  background-color: var(--toolbar);
+}
+
+.htoolbar-text{
+  color: #000 !important
+}
+
+.toolbar-text{
+  color: #fff !important
+}
+
+.bg-logoLogin {
+  background-color: var(--logoLogin-bg);
+}
+
+.bg-heart {
+  background-color: var(--heart-color);
+}
+
+
+.bgInput {
+  background-color: var(--bgInput);
 }
