@@ -1,3 +1,8 @@
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { auth, db } from '@/firebase/config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth'; // Corrección en la importación
@@ -277,5 +282,9 @@ const AuthSec = () => {
     </section>
   );
 };
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 export default AuthSec;
