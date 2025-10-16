@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import ArticleGameF from './ArticleGameF'
 import feature1 from '@/../public/feature1.jpeg'
