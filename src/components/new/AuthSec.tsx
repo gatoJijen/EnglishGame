@@ -71,7 +71,11 @@ const AuthSec = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      const defaultDisplayName = email.split('@')[0].replace(' ', '');
+      const defaultDisplayName = email.split('@')[0]
+        .replace(/\d/g, '') // Elimina todos los números
+        .replace(/\./g, ' ') // Reemplaza puntos por espacios
+        .replace(/\s+/g, ' ') // Opcional: Normaliza múltiples espacios a uno solo
+        .trim(); // Opcional: Elimina espacios al inicio y fina
       const defaultPhotoURL = 'https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png';
       const photoURL = user.photoURL || defaultPhotoURL;
       const defaultCategory = 'user';
@@ -140,7 +144,11 @@ const AuthSec = () => {
       const user = result.user;
 
       if (!user) throw new Error('No se pudo obtener el usuario.');
-      const displayName = user.displayName || 'UsuarioG';
+      const displayName = user.displayName || email.split('@')[0]
+        .replace(/\d/g, '') // Elimina todos los números
+        .replace(/\./g, ' ') // Reemplaza puntos por espacios
+        .replace(/\s+/g, ' ') // Opcional: Normaliza múltiples espacios a uno solo
+        .trim(); // Opcional: Elimina espacios al inicio y final;
       const defaultPhotoURL = 'https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png';
       const photoURL = user.photoURL || defaultPhotoURL;
       const Uemail = user.email || 'error@gmail.com';
@@ -251,6 +259,7 @@ const AuthSec = () => {
       <footer className="w-full h-full gap-2 flex flex-col justify-center items-center">
         <button
           className={`${loading || !email || !password ? 'cursor-not-allowed opacity-60 text-xl font-bold bg-gray-500' : 'cursor-pointer bg-blue-700 text-xl font-bold'} primary-text w-[80%] h-[3.5rem] rounded-xl`}
+          onClick={handleSubmit}
           disabled={loading || !email || !password}
           type="submit"
         >

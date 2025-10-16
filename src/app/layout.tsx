@@ -13,9 +13,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Inicio de sesión - Norma",
-  description: "Clon de plataforma norma",
-  keywords: ["Educativa S.A.S", "Sistema de gestión educativa", "Colegios", "Educación","Norma", "Norma Clon", "Gestión educativa", "Norma Clone"],
+  title: "Log in",
+  description: "Enter and discover many trivias of a lot of categories and grades.",
+  keywords: ["Trivia Titans, games, trivia, titans"],
   icons: {
     icon: "https://conpros3fili01.s3.amazonaws.com/images/favicon-norma.png",
   },

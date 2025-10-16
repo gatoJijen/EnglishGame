@@ -8,7 +8,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Educativa S.A.S",
+  title: "Home",
   description: "Sistema de gestión educativa para colegios",
   keywords: ["Educativa S.A.S", "Sistema de gestión educativa", "Colegios", "Educación","Norma", "Gestión educativa", "Norma Clone"],
   icons: {

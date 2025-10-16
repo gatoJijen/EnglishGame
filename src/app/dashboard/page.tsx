@@ -3,14 +3,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import HomeHeader from '@/components/HomeHeader'
+import HomeHeader from '@/components/new/HomeHeader'
 import { auth, db } from '@/firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import Loading from '@/components/Loading';
 import NavBarInit from '@/components/new/NavBarInit';
+import FeaturedGames from '@/components/new/FeaturedGames';
 
 
 const Home = () => {
@@ -86,6 +86,10 @@ const Home = () => {
     ) : (
       <Loading />
     )} */}
+        <main className='flex flex-col px-10 py-4'>
+            <HomeHeader name={userData?.displayName || "Cargando..."}/>
+            <FeaturedGames/>
+        </main>
 
 
 

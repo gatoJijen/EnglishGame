@@ -65,16 +65,16 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                 </a>
                 {ul ? (
                     <ul className='flex items-center justify-center ml-4 gap-4'>
-                        <a href="/dashboard">
+                        <a className='transition-all hover:text-blue-400 ' href="/dashboard">
                             <li>Home</li>
                         </a>
-                        <a href="/categories">
+                        <a className='transition-all hover:text-blue-400 ' href="/categories">
                             <li>Categories</li>
                         </a>
-                        <a href="/leaderBoard">
-                            <li>Leader Board</li>
+                        <a className='transition-all hover:text-blue-400 ' href="/leaderBoard">
+                            <li >Leaderboard</li>
                         </a>
-                        <a href="/Grades">
+                        <a className='transition-all hover:text-blue-400 ' href="/Grades">
                             <li>Grade</li>
 
                         </a>
@@ -99,7 +99,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                             <path d="M21 21l-6 -6" />
                         </svg>
-                        <input className='w-full' placeholder="Search Games..." type="text" />
+                        <input className='w-full focus:outline-0' placeholder="Search Games..." type="text" />
                     </article>
                     <picture>
                         <button onClick={toggleModal} className='w-[42px] h-[42px] focus:outline-0 cursor-pointer rounded-full mr-[16.4px]'>
