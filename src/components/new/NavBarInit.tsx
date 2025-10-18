@@ -4,6 +4,7 @@ import { auth } from '@/firebase/config';
 import { useTheme } from '@/hooks/useTheme';
 import { signOut } from 'firebase/auth';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { CiMap, CiSearch } from 'react-icons/ci'
@@ -60,24 +61,24 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                         <path d="M15 7v13" />
                     </svg>
                 </picture>
-                <a href={`${ul ? '/dashboard' : ''}`} className='primary-text text-xl font-bold'>
+                <Link href={`${ul ? '/dashboard' : '#'}`} className='primary-text text-xl font-bold'>
                     Trivia Titans
-                </a>
+                </Link>
                 {ul ? (
                     <ul className='flex items-center justify-center ml-4 gap-4'>
-                        <a className='transition-all hover:text-blue-400 ' href="/dashboard">
+                        <Link className='transition-all hover:text-blue-400 ' href="/dashboard">
                             <li>Home</li>
-                        </a>
-                        <a className='transition-all hover:text-blue-400 ' href="/categories">
+                        </Link>
+                        <Link className='transition-all hover:text-blue-400 ' href="/dashboard/categories">
                             <li>Categories</li>
-                        </a>
-                        <a className='transition-all hover:text-blue-400 ' href="/leaderBoard">
+                        </Link>
+                        <Link className='transition-all hover:text-blue-400 ' href="/dashboard/leaderBoard">
                             <li >Leaderboard</li>
-                        </a>
-                        <a className='transition-all hover:text-blue-400 ' href="/Grades">
+                        </Link>
+                        <Link className='transition-all hover:text-blue-400 ' href="/dashboard/Grades">
                             <li>Grade</li>
 
-                        </a>
+                        </Link>
                     </ul>
                 ) : ""}
             </header>

@@ -88,9 +88,9 @@ const Home = () => {
       <Loading />
     )} */}
         <main className='flex flex-col px-10 py-4'>
-            <HomeHeader name={userData?.displayName || "Cargando..."}/>
+            <CategoriesHome title={false} pagination={true}/>
             <FeaturedGames/>
-            <CategoriesHome/>
+            <CategoriesHome title={false} full={true}/>
         </main>
 
 
