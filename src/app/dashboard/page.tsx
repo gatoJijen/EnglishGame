@@ -90,7 +90,7 @@ const Home = () => {
         <main className='flex flex-col px-10 py-4'>
             <HomeHeader name={userData?.displayName || "Cargando..."}/>
             <FeaturedGames/>
-            <CategoriesHome/>
+            <CategoriesHome full={false} />
         </main>
 
 

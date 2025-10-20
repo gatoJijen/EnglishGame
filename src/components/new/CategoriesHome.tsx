@@ -85,8 +85,6 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
         }
     };
 
-    // Calculate grid columns based on items per page and rows
-    const columns = Math.ceil(itemsPerPage / rows);
 
     return (
         <section className="mt-14 flex flex-col gap-8">
@@ -99,8 +97,8 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
             }
 
             <section
-                className={`grid gap-4 w-full overflow-hidden grid-rows-${rows} grid-cols-${columns}`}
-                style={{ height: full ? 'auto' : '580px' }}
+                className={`grid gap-4 w-full overflow-hidden grid-rows-${rows} grid-cols-6`}
+                style={{ height: full ? '580px' : '580px' }}
             >
                 {paginatedCategories.map((category) => (
                     <Link

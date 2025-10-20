@@ -84,7 +84,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
             </header>
             {button ? (
                 <footer className='flex gap-2.5'>
-                    <article className="w-[250px] h-[40px] py-2 px-4 border border-white/20 rounded-lg flex justify-center items-center gap-3">
+                    {/*<article className="w-[250px] h-[40px] py-2 px-4 border border-white/20 rounded-lg flex justify-center items-center gap-3">
                         <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         width="24" 
@@ -101,7 +101,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                             <path d="M21 21l-6 -6" />
                         </svg>
                         <input className='w-full focus:outline-0' placeholder="Search Games..." type="text" />
-                    </article>
+                    </article>*/}
                     <picture>
                         <button onClick={toggleModal} className='w-[42px] h-[42px] focus:outline-0 cursor-pointer rounded-full mr-[16.4px]'>
                             <Image className='rounded-full' src={`${img}`} alt='user foto' width={100} height={100} />
@@ -114,7 +114,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                                 <p className='text-lg font-bold'>{user}</p>
                             </li>
                             <li onClick={toggleTheme} onMouseEnter={togglehover1} onMouseLeave={togglehover1} className={`flex items-center gap-[1rem] ${hover1 ? 'bg-white/90 htoolbar-text text-black' : 'text-white toolbar-text'}transition-all  cursor-pointer  px-5 h-10`}>{theme === 'light' ? (hover1 ? <IoSunny size={30} color='black' /> : <IoSunnyOutline size={30} color='white' />) : (hover1 ? <IoMoon className='mb-1 ml-1' size={24} color='black' /> : <IoMoonOutline className='mb-1 ml-1' size={28} color='white' />)}
-                                {theme === 'light' ? ' Modo Claro' : ' Modo Oscuro'}</li>
+                                {theme === 'light' ? ' Modo Claro' : ' Modo Oscuro'}<span className='primary-text opacity-40'>Beta</span></li>
                             <li onClick={handleLogout} onMouseEnter={togglehover2} onMouseLeave={togglehover2} className={`h-10 cursor-pointer  px-5 flex items-center gap-[1rem] ${hover2 ? ' bg-white/90 htoolbar-text text-black' : 'text-white toolbar-text'}transition-all `}>{hover2 ? <FiLogOut size={30} color='black' /> : <FiLogOut size={30} color='white' />}Salir</li>
                         </ul>
                     ) : <div className='absolute hidden opacity-0'></div>

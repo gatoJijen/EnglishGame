@@ -3,92 +3,106 @@
 import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 import NavBarInit from "@/components/new/NavBarInit";
 import CategoryHeader from "@/components/new/CategoryHeader";
+import Link from "next/link";
+import GamesCard from "@/components/new/GamesCard";
+import InWork from "@/components/new/InWork";
 
-interface Game {
-  type: string;
+
+interface Question {
+  quest: string;
+  correct: string;
+  incorrects: string[];
+}
+
+interface Game{
   title: string;
-  id: string;
+  description: string;
+  type: string;
+  url: string;
+  categoryId: string;
+  quests: Question[];
+  grade: number;
+  id: string
 }
 
 
-// Define el tipo de params como una promesa
-const page = ({ params }: { params: Promise<{ categories: string }> }) => {
+interface UserData {
+  año: string;
+  plan: string;
+  grado: string;
+  colegio: string;
+  displayName: string;
+  image: string;
+  email: string;
+  categoria: string;
+}
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-  const [user, setUser] = useState<any>(null);
-  const [uid, setUid] = useState("")
+const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
   const router = useRouter();
-  const redirect = (url: string) => {
-    router.push(url);
-  };
+  const [user, setUser] = useState<User | null>(null);
+  const [uid, setUid] = useState<string>("");
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [category, setCategory] = useState<Game[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [categoryParam, setCategoryParam] = useState<string | null>(null);
 
-
-
+  // Redirige al usuario si no está autenticado
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setUid(currentUser?.uid || "");
       if (!currentUser) {
-        redirect("/")
+        router.push("/");
       }
     });
 
-
-
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
-  const [userData, setUserData] = useState<{ año: string; plan: string; grado: string; colegio: string; displayName: string, image: string, email: string, categoria: string } | null>(null);
-
+  // Obtiene los datos del usuario desde Firestore
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, where("uid", "==", uid));
-        const querySnapshot = await getDocs(q);
+        if (uid) {
+          const usersRef = collection(db, "users");
+          const q = query(usersRef, where("uid", "==", uid));
+          const querySnapshot = await getDocs(q);
 
-        if (!querySnapshot.empty) {
-          const docData = querySnapshot.docs[0].data();
-          setUserData({
-            email: docData.email,
-            año: docData.año || "",
-            grado: docData.grado || "",
-            colegio: docData.colegio || "",
-            displayName: docData.displayName || "",
-            image: docData.image || "",
-            plan: docData.plan || "test",
-            categoria: docData.categoria || "",
-          });
+          if (!querySnapshot.empty) {
+            const docData = querySnapshot.docs[0].data();
+            setUserData({
+              email: docData.email || "",
+              año: docData.año || "",
+              grado: docData.grado || "",
+              colegio: docData.colegio || "",
+              displayName: docData.displayName || "",
+              image: docData.image || "",
+              plan: docData.plan || "test",
+              categoria: docData.categoria || "",
+            });
+          }
         }
       } catch (error) {
         console.error("Error obteniendo datos del usuario:", error);
       }
     };
 
-    if (uid) {
-      fetchUserData();
-    }
+    fetchUserData();
   }, [uid]);
 
-
-  const [category, setCategory] = useState<any>(null); // Ajusta el tipo según tu estructura de datos de Firebase
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<null | unknown>(null);
-  const [categoryParam, setCategoryParam] = useState<string | null>(null);
-  const [name, setName] = useState<string>('');
-
-  // Resuelve la promesa params al montar el componente
+  // Obtiene los juegos según la categoría
   useEffect(() => {
     let unsubscribe: () => void;
 
     const fetchParams = async () => {
       try {
-        const resolvedParams = await params; // Espera la resolución de la promesa
+        const resolvedParams = await params;
         setCategoryParam(resolvedParams.categories);
 
         if (resolvedParams.categories) {
@@ -105,7 +119,7 @@ const page = ({ params }: { params: Promise<{ categories: string }> }) => {
               querySnapshot.forEach((doc) => {
                 results.push({ id: doc.id, ...doc.data() } as Game);
               });
-              setCategory(results); // Guarda TODOS los resultados en el estado
+              setCategory(results);
               setLoading(false);
             },
             (err) => {
@@ -113,6 +127,9 @@ const page = ({ params }: { params: Promise<{ categories: string }> }) => {
               setLoading(false);
             }
           );
+        } else {
+          setLoading(false); // Si no hay categoría, termina la carga
+          setCategory([]);
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error desconocido");
@@ -123,35 +140,58 @@ const page = ({ params }: { params: Promise<{ categories: string }> }) => {
     fetchParams();
 
     return () => {
-      if (unsubscribe) unsubscribe(); // Limpia el listener
+      if (unsubscribe) unsubscribe();
     };
-  }, []); // Array de dependencias vacío, ya que params se resuelve una vez
+  }, []);
 
-  if (loading) return <Loading />;
+  if (loading || !userData) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <section>
+        <NavBarInit
+          ul={true}
+          button={true}
+          user={userData?.displayName || "Usuario"}
+          img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"}
+        />
+        <main>
+          <p>Error: {error}</p>
+        </main>
+      </section>
+    );
+  }
+
   return (
-    <section>
-      <NavBarInit ul={true} button={true} user={userData?.displayName || "Cargando..."} img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"} />
-      <main>
-        <CategoryHeader title={category.type}/>
-        {loading && <p>Cargando...</p>}
-        {
+    <section className="flex flex-col overflow-hidden justify-center">
 
-          category.length > 0 ? (
-            <ul>
-              {category.map((game: any) => (
-                <li key={game.id}>
-                  {game.id} - {game.title} {/* Ajusta según los campos de tu documento */}
-                </li>
+      <NavBarInit
+        ul={true}
+        button={true}
+        user={userData?.displayName || "Usuario"}
+        img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"}
+      />
+      {category.length > 0 ? (
+        <main className="flex flex-col justify-center items-center overflow-hidden">
+          <section className="flex flex-col w-[75dvw]">
+            <CategoryHeader title={categoryParam || "Categoría"} />
+
+            <ul className="flex flex-col gap-4">
+              {category.map((game) => (
+                <Link key={game.id} href={`/dashboard/games/${game.id}`}>
+                  <GamesCard title={game.title} description={game.description} url={`/${game.url}.png`} type={game.type} categoryId={game.categoryId} grade={game.grade} quests={game.quests} />
+                </Link>
               ))}
             </ul>
-          ) : (
-            <p>No se encontraron juegos para la categoría {categoryParam}</p>
-          )}
-      </main>
+          </section>
+
+        </main>) : (
+        <InWork/>
+      )}
     </section>
-
-
   );
 };
 
-export default page;
+export default Page;

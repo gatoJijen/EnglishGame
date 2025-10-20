@@ -1,8 +1,8 @@
 export interface Categories {
-    description: string;
-    title: string;
-    type: string;
-    url: string;
+    description: string | undefined;
+    title: string | undefined;
+    type: string ;
+    url: string | undefined;
 }
 export interface Decks {
     name: string | undefined;
