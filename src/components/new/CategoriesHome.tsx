@@ -1,11 +1,16 @@
 "use client";
 import { db } from '@/firebase/config';
-import { Categories } from '@/interfaces/db';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import CategoriesCard from './CategoriesCard';
 import Link from 'next/link';
 
+export interface Categories {
+    description: string;
+    title: string;
+    type: string ;
+    url: string ;
+}
 interface Props {
     pagination?: boolean;
     full?: boolean;
