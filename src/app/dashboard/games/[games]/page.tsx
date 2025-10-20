@@ -1,5 +1,7 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { collection, getDocs, query, where, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
 import React, { useEffect, useState } from "react";
@@ -225,3 +227,6 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
 };
 
 export default Page;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */

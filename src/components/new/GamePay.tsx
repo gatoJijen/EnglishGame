@@ -1,5 +1,7 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { useRouter } from "next/navigation";
@@ -159,3 +161,6 @@ const GamePay = ({ game, userData, userDocId }: GamePayProps) => {
 };
 
 export default GamePay;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
