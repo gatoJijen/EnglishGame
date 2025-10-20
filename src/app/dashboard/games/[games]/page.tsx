@@ -10,6 +10,7 @@ import NavBarInit from "@/components/new/NavBarInit";
 import CategoryHeader from "@/components/new/CategoryHeader";
 import InWork from "@/components/new/InWork";
 import NavGame from "@/components/new/NavGame";
+import GamePay from "@/components/new/GamePay";
 
 interface Question {
   quest: string;
@@ -56,6 +57,7 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
   const [showResults, setShowResults] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false) ;
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const [pSolved, setPSolved] = useState<{games:string}>()
 
   // Redirige al usuario si no está autenticado
   useEffect(() => {
@@ -108,6 +110,7 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
     const fetchGame = async () => {
       try {
         const resolvedParams = await params;
+        setPSolved(resolvedParams)
         const gameId = resolvedParams.games;
 
         if (gameId) {
@@ -156,7 +159,7 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
           img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"}
         />
         <main>
-          <p>Error: {error}</p>
+          <InWork/>
         </main>
       </section>
     );
@@ -215,7 +218,7 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
       totalR={totalQuestions}
       />
       <main className="flex h-[75dvh] flex-col justify-center items-center overflow-hidden">
-        
+        <GamePay  game={game} userData={userData} userDocId={userDocId}/>
       </main>
     </section>
   );

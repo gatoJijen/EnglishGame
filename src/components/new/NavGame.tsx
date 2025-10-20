@@ -4,9 +4,9 @@ import React from 'react'
 interface Props {
     title: string;
     ref: string;
-    points: any;
-    rounds: any;
-    totalR: any;
+    points: number;
+    rounds: number;
+    totalR: number;
 }
 
 
