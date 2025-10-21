@@ -5,8 +5,9 @@
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import InWork from "@/components/new/InWork";
+import { useGameContext } from "./GameContext";
 
 interface Question {
   quest: string;
@@ -45,22 +46,31 @@ interface GamePayProps {
 
 const GamePay = ({ game, userData, userDocId }: GamePayProps) => {
   const router = useRouter();
-  const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<string[]>([]);
-  const [showResults, setShowResults] = useState(false);
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const {
+    shuffledQuestions,
+    setShuffledQuestions,
+    currentQuestionIndex,
+    setCurrentQuestionIndex,
+    score,
+    setScore,
+    userAnswers,
+    setUserAnswers,
+    showResults,
+    setShowResults,
+    isAnswered,
+    setIsAnswered,
+    selectedOption,
+    setSelectedOption,
+  } = useGameContext();
 
-  // Baraja las preguntas una vez que se carga el juego
+  // Shuffle questions when the game loads
   useEffect(() => {
     if (game && game.quests) {
       const totalQuestions = game.grade === 6 ? 5 : game.grade === 8 ? 10 : game.grade === 10 ? 15 : 0;
       const shuffled = [...game.quests].sort(() => Math.random() - 0.5).slice(0, totalQuestions);
       setShuffledQuestions(shuffled);
     }
-  }, [game]);
+  }, [game, setShuffledQuestions]);
 
   if (!game || !userData || shuffledQuestions.length === 0) {
     return <InWork />;
@@ -161,6 +171,3 @@ const GamePay = ({ game, userData, userDocId }: GamePayProps) => {
 };
 
 export default GamePay;
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */

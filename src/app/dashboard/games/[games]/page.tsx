@@ -13,6 +13,7 @@ import CategoryHeader from "@/components/new/CategoryHeader";
 import InWork from "@/components/new/InWork";
 import NavGame from "@/components/new/NavGame";
 import GamePay from "@/components/new/GamePay";
+import { GameProvider } from "@/components/new/GameContext";
 
 interface Question {
   quest: string;
@@ -57,9 +58,9 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const [isAnswered, setIsAnswered] = useState(false) ;
+  const [isAnswered, setIsAnswered] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>("");
-  const [pSolved, setPSolved] = useState<{games:string}>()
+  const [pSolved, setPSolved] = useState<{ games: string }>()
 
   // Redirige al usuario si no está autenticado
   useEffect(() => {
@@ -161,7 +162,7 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
           img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"}
         />
         <main>
-          <InWork/>
+          <InWork />
         </main>
       </section>
     );
@@ -212,16 +213,17 @@ const Page = ({ params }: { params: Promise<{ games: string }> }) => {
 
   return (
     <section className="flex flex-col overflow-hidden justify-center">
-      <NavGame
-      title={game.title}
-      ref={`/dashboard/categories/${game.type}`}
-      points={score}
-      rounds={currentQuestionIndex + 1}
-      totalR={totalQuestions}
-      />
-      <main className="flex h-[75dvh] flex-col justify-center items-center overflow-hidden">
-        <GamePay  game={game} userData={userData} userDocId={userDocId}/>
-      </main>
+      <GameProvider>
+        <NavGame
+          title={game.title}
+          href={`/dashboard/categories/${game.type}`}
+          totalR={totalQuestions}
+        />
+        <main className="flex h-[75dvh] flex-col justify-center items-center overflow-hidden">
+          <GamePay game={game} userData={userData} userDocId={userDocId} />
+        </main>
+      </GameProvider>
+
     </section>
   );
 };
