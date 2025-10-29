@@ -189,17 +189,35 @@
         width: 100dvw;
         overflow-x: hidden;
         padding: 1rem 1.5rem;
+        margin-bottom: 1.5rem;
+        background-color: var(--background);
+        z-index: 99999;
 
         header {
-            picture {
+            button {
+                display: block;
+                opacity: 100;
+                cursor: pointer;
+
                 svg {
                     width: 40px;
                 }
             }
 
+            picture {
+                display: none;
+                opacity: 0;
+            }
+
             .primary-text {
                 font-size: 24px;
             }
+
+            .nDektopUl {
+                display: none;
+                opacity: 0;
+            }
+
         }
     }
 
@@ -218,18 +236,85 @@
         height: 100%;
         overflow-x: hidden;
     }
-}
 
-/* Media query para desktops pequeños (ej. >= 1024px) */
-@media (width<=1024px) {
-    .nAuthSec {
-        width: 90dvw;
+    .nHomeHeader {
+        margin-top: 1rem;
     }
-}
 
-/* Media query para desktops grandes (ej. >= 1280px) */
-@media (width<=1280px) {
-    .nAuthSec {
-        width: 90dvw;
+    .nMainHome {
+        padding: 1.5rem 1rem;
+    }
+
+    .nCarruselFeature {
+        overflow-x: auto !important;
+        margin-bottom: 1rem;
+    }
+
+    .nCategoriesHome {
+        grid-template-columns: repeat(3, 25dvw);
+        grid-template-rows: repeat(1, minmax(0, 25dvh)) !important;
+        height: 50dvh;
+    }
+
+    .nCategoriesHome>*:nth-child(n+7) {
+        display: none;
+    }
+
+    .nCategoriesCard {
+        p {
+            display: none;
+        }
+    }
+
+    .nCategoriesPage {
+        padding: 1.5rem 1rem;
+    }
+
+    .nCategoriesGames {
+        width: 95dvw;
+    }
+
+    .nHidde {
+        display: none;
+        opacity: 0;
+    }
+
+    .nImgGame {
+        header {
+            width: 50dvw;
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+
+        picture {
+            width: 22dvw !important;
+        }
+    }
+
+    .nNavGame {
+        width: 100dvw;
+
+        header {
+            a {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        
+
+        footer {
+            .buttonGame1 {
+                width: 30dvw;
+            }
+            .buttonGame2 {
+                width: 40dvw;
+            }
+        }
+    }
+    .nGamepay {
+        width: 95dvw;
     }
 }
