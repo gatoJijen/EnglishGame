@@ -52,7 +52,7 @@
         display: none;
     }
     .nCategoriesHome {
-        height: 80dvh;
+        height: 100dvh;
     }
     .nCarruselFeature {
         overflow-x: auto !important;
