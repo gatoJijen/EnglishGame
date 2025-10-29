@@ -6,15 +6,9 @@
 import React from "react";
 import AuthSec from "@/components/new/AuthSec";
 import NavBarInit from "@/components/new/NavBarInit";
-// Importa tu cliente de Supabase y la función de obtener el usuario si es necesario
 
 
 const Page: React.FC = () => {
-
-
-
-
-
 
   return (
     <>

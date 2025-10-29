@@ -1,5 +1,113 @@
+:root {
+  --background: #101022;
+  --bgInput: #0f1528;
+  --background-2: #fff;
+  --background-2-20: rgba(255, 255, 255, 0.1);
+  --foreground: #ededed;
+  --nav-bg: #27272F;
+  --logoLogin-bg: #414040;
+  --home-background: #111827;
+  --text-primary-color: #fff;
+  --text-primary-color-20: #ffffff33;
+  --text-secondary-color: #000;
+  --text-secondary-color-60: rgba(0, 0, 0, 0.2);
+  --text-primary-color-40: #ffffff99;
+  --toolbar: #27272F;
+  --app1-nav-bg: #E7E8E9;
+  --lighter-bg: #fafafa;
+  --search-bg: #f4f5f8;
+  --stroke-color: rgb(45,172,224);
+  --stroke-color-hover: rgba(45, 173, 224, 0.5);
+  --stroke-color-hover2: rgba(45, 173, 224, 0.2);
+  --span-bg: rgba(79,85,113,0.35);
+  --gradient-home: linear-gradient(0deg, #0e0e1b 40%, #27272f9d);
+  --gradient-heart: linear-gradient(180deg, #23374b5c, #23374b);
+  --heart-color: #1414143d;
+  
+}
+
+
+.dark {
+  --background: #ffffff;
+  --background-2: #000;
+  --foreground: #171717;
+  --nav-bg: #27272F;
+  --logoLogin-bg: #414040;
+  --home-background: #111827;
+  --text-primary-color: #000;
+  --text-primary-color-40: #000000  ;
+  --text-primary-color-20: rgba(0, 0, 0, 0.2);
+  --text-secondary-color: #fff;
+  --text-secondary-color-60: rgba(255, 255, 255, 0.2);
+  --toolbar: #27272F;
+  --span-bg: #fff9;
+  --gradient-home: linear-gradient(0deg,#faf8fc 40%,#27272f9d);
+  --gradient-heart: linear-gradient(180deg, #23374b5c, #23374b);
+  --heart-color: #1414143d;
+  }
+
+
 /* Media query para móviles medianos (ej. > 480px) */
 @media (width<=481px) {
+    .nNavInit {
+        width: 100dvw;
+        overflow-x: hidden;
+        padding: 1rem 1.5rem;
+        position: fixed;
+        margin-bottom: 1.5rem;
+        background-color: var(--background);
+        z-index: 99999;
+        header {
+            button {
+                display: block;
+                opacity: 100;
+                svg {
+                    width: 40px;
+                }
+            }
+            picture {
+                display: none;
+                opacity: 0;
+            }
+            .primary-text {
+                font-size: 24px;
+            }
+            .nDektopUl {
+                display: none;
+                opacity: 0;
+            }
+
+        }
+    }
+    .nAuthSec {
+        margin-top: 1rem;
+        width: 100dvw;
+        height: 100%;
+        border: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: start!important;
+        gap: 0.85rem;
+    }
+
+    .nMainAuth {
+        height: 100%;
+        overflow-x: hidden;
+    }
+    .nHomeHeader {
+        margin-top: 4.5rem;
+    }
+    .nMainHome {
+        padding: 1.5rem 1rem ;
+    }
+    .nCarruselFeature {
+        overflow-x: auto !important;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Media query para tablets (ej. >= 768px) */
+@media (width<=768px) {
     .nNavInit {
         width: 100dvw;
         overflow-x: hidden;
@@ -30,11 +138,6 @@
         height: 100%;
         overflow-x: hidden;
     }
-}
-
-/* Media query para tablets (ej. >= 768px) */
-@media (width<=768px) {
-    
 }
 
 /* Media query para desktops pequeños (ej. >= 1024px) */

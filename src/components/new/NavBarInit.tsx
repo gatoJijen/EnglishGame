@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { FiLogOut } from 'react-icons/fi';
 import { IoMoon, IoMoonOutline, IoSunny, IoSunnyOutline } from 'react-icons/io5';
+import ToggleNav from './ToggleNav';
 
 interface Props {
     ul?: boolean,
@@ -43,15 +44,33 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
     };
 
     const [abrir, setAbrir] = useState(false)
+    const [abrir1, setAbrir1] = useState(false)
     const [hover1, setHover1] = useState(false)
     const [hover2, setHover2] = useState(false)
     const togglehover1 = () => setHover1(!hover1)
     const togglehover2 = () => setHover2(!hover2)
     const toggleModal = () => setAbrir(!abrir)
+    const toggleModal1 = () => setAbrir1(!abrir1)
 
     return (
         <nav className='flex justify-between px-6 items-center primary-border-b-20 py-[0.85rem] w-dvw overflow-x-hidden nNavInit'>
-            <header className='flex gap-2 items-center '>
+            <header className='flex gap-2 items-center relative'>
+                {ul ?
+                    (
+                        <>
+                            <button onClick={toggleModal1} className='hidden opacity-0'>
+                                <svg className='fill-blue-700 stroke-0 w-[40px] h-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13" />
+                                    <path d="M9 4v13" />
+                                    <path d="M15 7v13" />
+                                </svg>
+                            </button>
+                            
+                        </>
+                    ) : ""
+
+                }
                 <picture>
                     <svg className='fill-blue-700 stroke-0 w-[40px] h-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -60,11 +79,11 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                         <path d="M15 7v13" />
                     </svg>
                 </picture>
-                <Link href={`${ul ? '/dashboard' : '#'}`} className='primary-text text-xl font-bold'>
+                <h1 className='primary-text text-xl font-bold'>
                     Trivia Titans
-                </Link>
+                </h1>
                 {ul ? (
-                    <ul className='flex items-center justify-center ml-4 gap-4'>
+                    <ul className='flex items-center justify-center ml-4 gap-4 nDektopUl'>
                         <Link className='transition-all hover:text-blue-400 ' href="/dashboard">
                             <li>Home</li>
                         </Link>
@@ -76,7 +95,6 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                         </Link>
                         <Link className='transition-all hover:text-blue-400 ' href="/dashboard/Grades">
                             <li>Grade</li>
-
                         </Link>
                     </ul>
                 ) : ""}
@@ -119,6 +137,9 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                     ) : <div className='absolute hidden opacity-0'></div>
 
                     }
+                    {abrir1 ? <ToggleNav toggle={toggleModal1} /> : ""
+
+                            }
                 </footer>
 
             ) : ""
