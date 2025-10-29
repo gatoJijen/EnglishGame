@@ -66,9 +66,18 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                                     <path d="M15 7v13" />
                                 </svg>
                             </button>
-                            
+
                         </>
-                    ) : ""
+                    ) : (
+                        <button className='hidden opacity-0'>
+                            <svg className='fill-blue-700 stroke-0 w-[40px] h-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13" />
+                                <path d="M9 4v13" />
+                                <path d="M15 7v13" />
+                            </svg>
+                        </button>
+                    )
 
                 }
                 <picture>
@@ -126,7 +135,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                         </button>
                     </picture>
                     {abrir ? (
-                        <ul className='text-decoration-none bg-toolbar min-w-[15rem] rounded-lg list-none flex flex-col absolute top-[10.5svh] py-[1rem] right-[0.85rem] gap-2 justify-center  '>
+                        <ul className='text-decoration-none bg-toolbar min-w-[15rem] rounded-lg list-none flex flex-col absolute top-[10.5svh] py-[1rem] right-[0.85rem] gap-2 justify-center z-[999999] '>
                             <li className=' text-white  flex flex-col items-center '>
                                 <p className='text-lg font-bold'>{user}</p>
                             </li>
@@ -139,7 +148,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                     }
                     {abrir1 ? <ToggleNav toggle={toggleModal1} /> : ""
 
-                            }
+                    }
                 </footer>
 
             ) : ""

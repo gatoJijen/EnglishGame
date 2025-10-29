@@ -53,7 +53,6 @@
         width: 100dvw;
         overflow-x: hidden;
         padding: 1rem 1.5rem;
-        position: fixed;
         margin-bottom: 1.5rem;
         background-color: var(--background);
         z-index: 99999;
@@ -61,6 +60,7 @@
             button {
                 display: block;
                 opacity: 100;
+                cursor: pointer;
                 svg {
                     width: 40px;
                 }
@@ -95,7 +95,7 @@
         overflow-x: hidden;
     }
     .nHomeHeader {
-        margin-top: 4.5rem;
+        margin-top: 1rem;
     }
     .nMainHome {
         padding: 1.5rem 1rem ;
