@@ -175,7 +175,7 @@ const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
       />
       {category.length > 0 ? (
         <main className="flex flex-col justify-center items-center overflow-hidden">
-          <section className="flex flex-col w-[75dvw]">
+          <section className="flex flex-col w-[75dvw] nCategoriesGames">
             <CategoryHeader title={categoryParam || "Categoría"} />
 
             <ul className="flex flex-col gap-4">

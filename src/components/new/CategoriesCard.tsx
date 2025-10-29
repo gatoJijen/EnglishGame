@@ -9,7 +9,7 @@ interface Props {
 
 const CategoriesCard = ({ title, description, url}: Props) => {
     return (
-        <article>
+        <article className='nCategoriesCard'>
             <picture>
                 <Image className='rounded-xl' src={url} alt={title} width={220} height={220} />
             </picture>

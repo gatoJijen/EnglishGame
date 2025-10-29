@@ -116,7 +116,7 @@ const GamePay = ({ game, userData, userDocId }: GamePayProps) => {
   const incorrectCount = totalQuestions - correctCount;
 
   return (
-    <section className="flex flex-col w-[60dvw] bg-white/10 rounded-xl primary-text">
+    <section className="flex flex-col w-[60dvw] bg-white/10 rounded-xl primary-text nGamepay">
       {!showResults ? (
         <section className="flex flex-col p-4">
           <header>

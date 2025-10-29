@@ -12,10 +12,10 @@ const NavGame = ({ title, href, totalR }: Props) => {
   const { score, currentQuestionIndex } = useGameContext();
 
   return (
-    <nav className="flex justify-between px-6 items-center border-b-white/20 border-b py-[0.85rem]">
+    <nav className="flex justify-between px-6 items-center border-b-white/20 border-b py-[0.85rem] nNavGame">
       <header className="flex gap-4 items-center">
         <Link
-          className="bg-white/20 rounded-full w-[40px] h-[40px] flex justify-center items-center text-red-500"
+          className="bg-white/20 a rounded-full w-[40px] h-[40px] flex justify-center items-center text-red-500"
           href={href}
         >
           <svg
@@ -35,13 +35,13 @@ const NavGame = ({ title, href, totalR }: Props) => {
             <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
           </svg>
         </Link>
-        <h1 className="primary-text text-xl font-bold">{title}</h1>
+        <h1 className="primary-text text-xl font-bold nHidde">{title}</h1>
       </header>
       <footer className="flex gap-4 items-center">
-        <div className="bg-white/20 w-[180px] h-[2.5rem] p-2 text-center rounded-lg">
+        <div className="bg-white/20 w-[180px] h-[2.5rem] p-2 text-center rounded-lg buttonGame1">
           Points: {score}
         </div>
-        <div className="bg-white/20 w-[180px] h-[2.5rem] p-2 text-center rounded-lg">
+        <div className="bg-white/20 w-[180px] h-[2.5rem] p-2 text-center rounded-lg buttonGame2">
           Rounds: {currentQuestionIndex + 1} / {totalR}
         </div>
       </footer>

@@ -8,8 +8,8 @@ import Link from 'next/link';
 export interface Categories {
     description: string;
     title: string;
-    type: string ;
-    url: string ;
+    type: string;
+    url: string;
 }
 interface Props {
     pagination?: boolean;
@@ -24,9 +24,21 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
     const [filteredCategory, setFilteredCategory] = useState<Categories | null>(null);
     const [categoryId, setCategoryId] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
 
-    // Adjust items per page: 24 for full mode, 12 otherwise
-    const itemsPerPage = full ? 24 : 12;
+    useEffect(() => {
+        // Detect mobile based on the same breakpoint as your media query (adjust if needed)
+        const mediaQuery = window.matchMedia('(max-width: 640px)');
+        setIsMobile(mediaQuery.matches);
+
+        const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
+
+    // Dynamically adjust items per page: 24 for full, 6 for mobile !full, 12 otherwise
+    const itemsPerPage = full ? 24 : isMobile ? 6 : 12;
 
     useEffect(() => {
         const q = query(collection(db, 'categories'));
@@ -90,20 +102,17 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
         }
     };
 
-
     return (
         <section className="mt-14 flex flex-col gap-8">
             {title && (
                 <header>
                     <h1 className="primary-text font-bold text-3xl">Categories</h1>
                 </header>
-            )
-
-            }
+            )}
 
             <section
-                className={`grid gap-4 w-full overflow-hidden grid-rows-${rows} grid-cols-6`}
-                style={{ height: full ? '580px' : '580px' }}
+                className={`grid gap-4 w-full overflow-hidden grid-rows-2 grid-cols-6 nCategoriesHome h-[580px]`}
+                
             >
                 {paginatedCategories.map((category) => (
                     <Link
@@ -127,7 +136,7 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
                             <button
                                 onClick={handlePrevious}
                                 disabled={currentPage === 1 || filteredCategory !== null}
-                                className={`p-2 rounded-full transition-colors ${currentPage === 1 || filteredCategory
+                                className={`p-2 rounded-full cursor-pointer transition-colors ${currentPage === 1 || filteredCategory
                                     ? 'text-gray-400 cursor-not-allowed'
                                     : 'text-blue-500 hover:bg-blue-100'
                                     }`}
@@ -179,7 +188,6 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
                             more →
                         </Link>
                     )}
-
                 </footer>
             )}
         </section>
