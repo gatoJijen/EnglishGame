@@ -51,6 +51,9 @@
     p {
         display: none;
     }
+    .nCategoriesHome {
+        height: 60dvh;
+    }
     .nCarruselFeature {
         overflow-x: auto !important;
         margin-bottom: 1rem;
