@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
-import { CiMap, CiSearch } from 'react-icons/ci'
 import { FiLogOut } from 'react-icons/fi';
 import { IoMoon, IoMoonOutline, IoSunny, IoSunnyOutline } from 'react-icons/io5';
 
@@ -51,7 +50,7 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
     const toggleModal = () => setAbrir(!abrir)
 
     return (
-        <nav className='flex justify-between px-6 items-center border-b-white/20 border-b py-[0.85rem]'>
+        <nav className='flex justify-between px-6 items-center primary-border-b-20 py-[0.85rem] w-dvw overflow-x-hidden nNavInit'>
             <header className='flex gap-2 items-center '>
                 <picture>
                     <svg className='fill-blue-700 stroke-0 w-[40px] h-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

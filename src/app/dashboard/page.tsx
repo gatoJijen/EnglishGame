@@ -73,7 +73,7 @@ const Home = () => {
     }, [uid]);
 
     return (
-        <section className='relative z-[999]'>
+        <section className='relative z-[999] overflow-x-hidden'>
             <NavBarInit ul={true} button={true} user={userData?.displayName || "Cargando..."} img={userData?.image || "https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png"} />
             {/* {userData ? (
       <HomeHeader

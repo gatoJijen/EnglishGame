@@ -19,7 +19,7 @@ const Page: React.FC = () => {
   return (
     <>
       <NavBarInit />
-      <main className='flex items-center justify-center w-full h-full pt-8'>
+      <main className='flex items-center justify-center w-dvw overflow-x-hidden h-full pt-8 nMainAuth'>
         <AuthSec />
       </main>
     </>

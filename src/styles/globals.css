@@ -9,6 +9,7 @@
   --logoLogin-bg: #414040;
   --home-background: #111827;
   --text-primary-color: #fff;
+  --text-primary-color-20: #ffffff33;
   --text-secondary-color: #000;
   --text-secondary-color-60: rgba(0, 0, 0, 0.2);
   --text-primary-color-40: #ffffff99;
@@ -36,6 +37,7 @@
   --home-background: #111827;
   --text-primary-color: #000;
   --text-primary-color-40: #000000  ;
+  --text-primary-color-20: rgba(0, 0, 0, 0.2);
   --text-secondary-color: #fff;
   --text-secondary-color-60: rgba(255, 255, 255, 0.2);
   --toolbar: #27272F;
@@ -157,4 +159,16 @@ body {
 
 .bgInput {
   background-color: var(--bgInput);
+}
+
+
+.primary-border {
+  border: 1px solid var(--text-primary-color)
+}
+.primary-border-20 {
+  border: 1px solid var(--text-primary-color-20)
+}
+
+.primary-border-b-20 {
+  border-bottom: 1px solid var(--text-primary-color-20)
 }

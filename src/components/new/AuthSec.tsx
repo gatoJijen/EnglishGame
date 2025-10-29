@@ -1,11 +1,10 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { auth, db } from '@/firebase/config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
-import { GoogleAuthProvider } from 'firebase/auth'; // Corrección en la importación
+import { GoogleAuthProvider } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -79,8 +78,8 @@ const AuthSec = () => {
       const defaultDisplayName = email.split('@')[0]
         .replace(/\d/g, '') // Elimina todos los números
         .replace(/\./g, ' ') // Reemplaza puntos por espacios
-        .replace(/\s+/g, ' ') // Opcional: Normaliza múltiples espacios a uno solo
-        .trim(); // Opcional: Elimina espacios al inicio y fina
+        .replace(/\s+/g, ' ') // Normaliza múltiples espacios a uno solo
+        .trim(); // Elimina espacios al inicio y final
       const defaultPhotoURL = 'https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png';
       const photoURL = user.photoURL || defaultPhotoURL;
       const defaultCategory = 'user';
@@ -149,11 +148,11 @@ const AuthSec = () => {
       const user = result.user;
 
       if (!user) throw new Error('No se pudo obtener el usuario.');
-      const displayName = user.displayName || email.split('@')[0]
+      const displayName = user.displayName || (user.email?.split('@')[0] || '')
         .replace(/\d/g, '') // Elimina todos los números
         .replace(/\./g, ' ') // Reemplaza puntos por espacios
-        .replace(/\s+/g, ' ') // Opcional: Normaliza múltiples espacios a uno solo
-        .trim(); // Opcional: Elimina espacios al inicio y final;
+        .replace(/\s+/g, ' ') // Normaliza múltiples espacios a uno solo
+        .trim(); // Elimina espacios al inicio y final
       const defaultPhotoURL = 'https://www.instagram.com/static/images/text_app/profile_picture/profile_pic.png/72f3228a91ee.png';
       const photoURL = user.photoURL || defaultPhotoURL;
       const Uemail = user.email || 'error@gmail.com';
@@ -178,7 +177,7 @@ const AuthSec = () => {
         defaultYear,
         defaultGrade,
         photoURL,
-        Uemail, // Corrección: Usar Uemail en lugar de email
+        Uemail,
         defaultResources,
         defaultChats,
         defaultNewChats,
@@ -225,7 +224,7 @@ const AuthSec = () => {
   }, [router]);
 
   return (
-    <section className="flex flex-col justify-between items-center bg-transparent border border-white/20 rounded-2xl w-[40dvw] h-[80dvh]">
+    <section className="flex flex-col gap-2 justify-between items-center bg-transparent primary-border-20 rounded-2xl h-[80dvh] w-[45dvw] transition-all nAuthSec">
       <header className="primary-text w-full h-full flex flex-col items-center justify-center text-center gap-2">
         <h1 className="text-4xl font-bold">Login in to your account</h1>
         <p className="opacity-40">Welcome back! Please Enter your Details.</p>
@@ -236,7 +235,7 @@ const AuthSec = () => {
           <input
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            className="border border-white/20 primary-text p-4 rounded-xl bgInput"
+            className="border primary-border-20 primary-text p-4 rounded-xl bgInput"
             placeholder="example@gmail.com"
             required
             type="email"
@@ -248,7 +247,7 @@ const AuthSec = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             onKeyUp={handleKeyPress}
-            className="border border-white/20 primary-text p-4 rounded-xl bgInput"
+            className="border primary-border-20 primary-text p-4 rounded-xl bgInput"
             placeholder="Enter your password"
             type="password"
           />
@@ -274,7 +273,7 @@ const AuthSec = () => {
           disabled={loading}
           onClick={googleRegister}
           className="bg-white cursor-pointer secondary-text w-[80%] h-[3.5rem] rounded-xl text-xl font-bold"
-          type="button" // Cambiado a type="button" para evitar submit
+          type="button"
         >
           Enter with Google
         </button>
