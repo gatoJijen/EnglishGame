@@ -3,6 +3,17 @@
     .nNavInit {
         width: 100dvw;
         overflow-x: hidden;
+        padding: 1rem 1.5rem;
+        header {
+            picture {
+                svg {
+                    width: 40px;
+                }
+            }
+            .primary-text {
+                font-size: 24px;
+            }
+        }
     }
     .nAuthSec {
         margin-top: 1rem;
@@ -23,8 +34,35 @@
 
 /* Media query para tablets (ej. >= 768px) */
 @media (width<=768px) {
+    .nNavInit {
+        width: 100dvw;
+        overflow-x: hidden;
+        padding: 1rem 1.5rem;
+        header {
+            picture {
+                svg {
+                    width: 40px;
+                }
+            }
+            .primary-text {
+                font-size: 24px;
+            }
+        }
+    }
     .nAuthSec {
-        width: 90dvw;
+        margin-top: 1rem;
+        width: 100dvw;
+        height: 100%;
+        border: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: start!important;
+        gap: 0.85rem;
+    }
+
+    .nMainAuth {
+        height: 100%;
+        overflow-x: hidden;
     }
 }
 
