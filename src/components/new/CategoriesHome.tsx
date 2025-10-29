@@ -136,9 +136,9 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
                             <button
                                 onClick={handlePrevious}
                                 disabled={currentPage === 1 || filteredCategory !== null}
-                                className={`p-2 rounded-full cursor-pointer transition-colors ${currentPage === 1 || filteredCategory
+                                className={`p-2 rounded-full  transition-all ${currentPage === 1 || filteredCategory
                                     ? 'text-gray-400 cursor-not-allowed'
-                                    : 'text-blue-500 hover:bg-blue-100'
+                                    : 'text-blue-500 hover:bg-blue-100 cursor-pointer'
                                     }`}
                                 aria-label="Previous page"
                             >
@@ -160,9 +160,9 @@ const CategoriesHome = ({ pagination = false, full = false, rows = 2, title = tr
                             <button
                                 onClick={handleNext}
                                 disabled={currentPage === totalPages || filteredCategory !== null}
-                                className={`p-2 rounded-full transition-colors ${currentPage === totalPages || filteredCategory
+                                className={`p-2 rounded-full  transition-all ${currentPage === totalPages || filteredCategory
                                     ? 'text-gray-400 cursor-not-allowed'
-                                    : 'text-blue-500 hover:bg-blue-100'
+                                    : 'text-blue-500 hover:bg-blue-100 cursor-pointer'
                                     }`}
                                 aria-label="Next page"
                             >

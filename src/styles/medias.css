@@ -47,8 +47,26 @@
 }
 
 
+@media (width<=1024px) {
+    p {
+        display: none;
+    }
+    .nCarruselFeature {
+        overflow-x: auto !important;
+        margin-bottom: 1rem;
+        article {
+            p {
+                display: block;
+            }
+        }
+    }
+}
+
 /* Media query para móviles medianos (ej. > 480px) */
 @media (width<=481px) {
+    p {
+        display: block;
+    }
     .nNavInit {
         width: 100dvw;
         overflow-x: hidden;
@@ -185,6 +203,9 @@
 
 /* Media query para tablets (ej. >= 768px) */
 @media (width<=768px) {
+    p {
+        display: block;
+    }
     .nNavInit {
         width: 100dvw;
         overflow-x: hidden;
@@ -320,14 +341,3 @@
     }
 }
 
-@media (width<=1024px) {
-    p {
-        display: none;
-        opacity: 0;
-    }
-}
-
-/* Media query para desktops grandes (ej. >= 1280px) */
-@media (width<=1280px) {
-    
-}
