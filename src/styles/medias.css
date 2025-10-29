@@ -316,5 +316,18 @@
     }
     .nGamepay {
         width: 95dvw;
+        margin-top: 2.5rem;
     }
+}
+
+@media (width<=1024px) {
+    p {
+        display: none;
+        opacity: 0;
+    }
+}
+
+/* Media query para desktops grandes (ej. >= 1280px) */
+@media (width<=1280px) {
+    
 }
