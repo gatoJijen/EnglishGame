@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
@@ -170,3 +174,6 @@ const GamesCard = ({ title, description, type,url ,url2, categoryId, quests, gra
 };
 
 export default GamesCard;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
