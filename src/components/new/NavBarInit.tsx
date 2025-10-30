@@ -99,12 +99,12 @@ const NavBarInit = ({ ul, button, img, user }: Props) => {
                         <Link className='transition-all hover:text-blue-400 ' href="/dashboard/categories">
                             <li>Categories</li>
                         </Link>
-                        <Link className='transition-all hover:text-blue-400 ' href="/dashboard/leaderBoard">
+                        {/*<Link className='transition-all hover:text-blue-400 ' href="/dashboard/leaderBoard">
                             <li >Leaderboard</li>
                         </Link>
                         <Link className='transition-all hover:text-blue-400 ' href="/dashboard/Grades">
                             <li>Grade</li>
-                        </Link>
+                        </Link>*/}
                     </ul>
                 ) : ""}
             </header>

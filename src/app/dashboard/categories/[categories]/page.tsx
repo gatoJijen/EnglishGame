@@ -186,7 +186,7 @@ const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
           <section className="flex flex-col w-[75dvw] nCategoriesGames">
             <CategoryHeader title={categoryParam || "Categoría"} />
 
-            <div className="flex gap-4 mb-4">
+            <div className="flex gap-4 mb-4 flex-wrap w-full">
               <button
                 className={`px-4 py-2 rounded primary-text cursor-pointer transition-all ${selectedFilter === null ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-600 hover:bg-gray-600/20'}`}
                 onClick={() => setSelectedFilter(null)}
