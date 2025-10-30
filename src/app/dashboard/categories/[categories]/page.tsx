@@ -12,14 +12,13 @@ import Link from "next/link";
 import GamesCard from "@/components/new/GamesCard";
 import InWork from "@/components/new/InWork";
 
-
 interface Question {
   quest: string;
   correct: string;
   incorrects: string[];
 }
 
-interface Game{
+interface Game {
   title: string;
   description: string;
   type: string;
@@ -27,9 +26,8 @@ interface Game{
   categoryId: string;
   quests: Question[];
   grade: number;
-  id: string
+  id: string;
 }
-
 
 interface UserData {
   año: string;
@@ -51,6 +49,7 @@ const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [categoryParam, setCategoryParam] = useState<string | null>(null);
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
   // Redirige al usuario si no está autenticado
   useEffect(() => {
@@ -164,9 +163,18 @@ const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
     );
   }
 
+  const gradeMap: Record<string, number> = {
+    easy: 6,
+    intermediate: 8,
+    challenge: 10,
+  };
+
+  const filteredGames = selectedFilter
+    ? category.filter((game) => game.grade === gradeMap[selectedFilter])
+    : category;
+
   return (
     <section className="flex flex-col overflow-hidden justify-center">
-
       <NavBarInit
         ul={true}
         button={true}
@@ -178,17 +186,53 @@ const Page = ({ params }: { params: Promise<{ categories: string }> }) => {
           <section className="flex flex-col w-[75dvw] nCategoriesGames">
             <CategoryHeader title={categoryParam || "Categoría"} />
 
+            <div className="flex gap-4 mb-4">
+              <button
+                className={`px-4 py-2 rounded primary-text cursor-pointer transition-all ${selectedFilter === null ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-600 hover:bg-gray-600/20'}`}
+                onClick={() => setSelectedFilter(null)}
+              >
+                Todos
+              </button>
+              <button
+                className={`px-4 py-2 rounded primary-text cursor-pointer transition-all ${selectedFilter === 'easy' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-600 hover:bg-gray-600/20'}`}
+                onClick={() => setSelectedFilter('easy')}
+              >
+                Easy
+              </button>
+              <button
+                className={`px-4 py-2 rounded primary-text cursor-pointer transition-all ${selectedFilter === 'intermediate' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-600 hover:bg-gray-600/20'}`}
+                onClick={() => setSelectedFilter('intermediate')}
+              >
+                Intermediate
+              </button>
+              <button
+                className={`px-4 py-2 rounded primary-text cursor-pointer transition-all ${selectedFilter === 'challenge' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-600 hover:bg-gray-600/20'}`}
+                onClick={() => setSelectedFilter('challenge')}
+              >
+                Challenge
+              </button>
+            </div>
+
             <ul className="flex flex-col gap-4">
-              {category.map((game) => (
-                <Link key={game.id} href={`/dashboard/games/${game.id}`}>
-                  <GamesCard title={game.title} description={game.description} url={`/${game.url}.png`} type={game.type} categoryId={game.categoryId} grade={game.grade} quests={game.quests} />
-                </Link>
+              {filteredGames.map((game) => (
+                  <GamesCard
+                    title={game.title}
+                    description={game.description}
+                    url={`/${game.url}.png`}
+                    url2={`${game.url}`}
+                    type={game.type}
+                    categoryId={game.id}
+                    grade={game.grade}
+                    quests={game.quests}
+                    reference={`/dashboard/games/${game.id}`}
+                    key={game.id}
+                  />
               ))}
             </ul>
           </section>
-
-        </main>) : (
-        <InWork/>
+        </main>
+      ) : (
+        <InWork />
       )}
     </section>
   );
