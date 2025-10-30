@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   
 
-  return <div>{children}</div>;
+  return <div className="overflow-x-hidden">{children}</div>;
 }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */

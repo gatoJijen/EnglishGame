@@ -87,7 +87,7 @@ const Home = () => {
     ) : (
       <Loading />
     )} */}
-        <main className='flex flex-col px-10 py-4 nCategoriesPage'>
+        <main className='flex flex-col px-10 py-4 nCategoriesPage overflow-x-hidden'>
             <CategoriesHome title={false} pagination={true}/>
             <FeaturedGames/>
         </main>
